@@ -34,6 +34,10 @@ namespace MovieApp
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
+
+            services.AddDbContext<MvcMovieContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("MvcMovieContext")));
+
             services.AddRazorPages();
 
             services.AddAuthorization(options =>
